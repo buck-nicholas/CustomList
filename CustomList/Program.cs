@@ -10,7 +10,8 @@ namespace CustomList
     {
         static void Main(string[] args)
         {
-            //ListMethod listMethods = new ListMethod();
+            //ListMethod<T> listMethods = new ListMethod<T>();
+            //ListMethod<T> myList = new ListMethod<T>();
         }
     }
 }
