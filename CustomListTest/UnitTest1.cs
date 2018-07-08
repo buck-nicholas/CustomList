@@ -201,11 +201,17 @@ namespace CustomListTest
         [TestMethod]
         public void Remove_Element_RemoveASingleElementFromList()
         {
+            CustomList.ListMethod<int> listMethods = new CustomList.ListMethod<int>();
             //Arrange
-
+            listMethods.Add(10);
+            listMethods.Add(11);
+            listMethods.Add(12);
+            int expectedValue = 12;
             //Act
-
+            listMethods.Remove(1);
+            int actualValue = listMethods[1];
             //Assert
+            Assert.AreEqual(expectedValue, actualValue);
         }
     }
 }

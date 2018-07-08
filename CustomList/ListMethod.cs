@@ -28,7 +28,13 @@ namespace CustomList
             }
         }
         private int Capacity { get; }
-        private int Count { get; }
+        private int Count
+        {
+            get
+            {
+                return newArray.Count();
+            }
+        }
         public void Add(T item)
         {
             if (count >= capacity)
@@ -38,6 +44,30 @@ namespace CustomList
             }
             newArray[count] = item;
             count++;
+        }
+        public void Remove(int index)
+        {
+            //try
+            //{
+                T[] reducedArray = new T[capacity];
+                for (int i = 0; i < count; i++)
+                {
+                    if (i < index)
+                    {
+                        reducedArray[i] = newArray[i];
+                    }
+                    else if (i > index)
+                    {
+                        reducedArray[i - 1] = newArray[i];
+                    }
+                }
+                newArray = reducedArray;
+            //}
+            //catch
+            //{
+            //    System.IndexOutOfRangeException indexOutOfRange = new System.IndexOutOfRangeException("Index cannot be out of range");
+            //    throw indexOutOfRange;
+            //}
         }
     }
 }
