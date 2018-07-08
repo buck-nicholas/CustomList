@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace CustomList
 {
     public class ListMethod<T>
@@ -11,8 +10,6 @@ namespace CustomList
         public T[] newArray;
         private int capacity;
         private int count;
-
-
         public ListMethod()
         {
             capacity = 5;
@@ -31,9 +28,7 @@ namespace CustomList
             }
         }
         private int Capacity { get; }
-
         private int Count { get; }
-
         public void Add(T item)
         {
             if (count >= capacity)
