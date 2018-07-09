@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 namespace CustomList
 {
-    public class ListMethod<T>
+    public class ListMethod<T> : IEnumerable<T>
     {
         public T[] newArray;
         private int capacity;
@@ -47,8 +47,8 @@ namespace CustomList
         }
         public void Remove(int index)
         {
-            //try
-            //{
+            try
+            {
                 T[] reducedArray = new T[capacity];
                 for (int i = 0; i < count; i++)
                 {
@@ -62,12 +62,23 @@ namespace CustomList
                     }
                 }
                 newArray = reducedArray;
-            //}
-            //catch
-            //{
-            //    System.IndexOutOfRangeException indexOutOfRange = new System.IndexOutOfRangeException("Index cannot be out of range");
-            //    throw indexOutOfRange;
-            //}
+            }
+            catch
+            {
+                System.IndexOutOfRangeException indexOutOfRange = new System.IndexOutOfRangeException("Index cannot be out of range");
+                throw indexOutOfRange;
+            }
+        }
+        public IEnumerator<T> GetEnumerator()
+        {
+            for(int index = 0; index < newArray.Length; index++)
+            {
+                yield return newArray[index];
+            }
+        }
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
         }
     }
 }

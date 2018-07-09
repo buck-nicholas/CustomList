@@ -213,5 +213,24 @@ namespace CustomListTest
             //Assert
             Assert.AreEqual(expectedValue, actualValue);
         }
+        [TestMethod]
+        public void Remove_Element_RemoveMultipleElementsFromList()
+        {
+            CustomList.ListMethod<int> listMethods = new CustomList.ListMethod<int>();
+            //Arrange
+            listMethods.Add(10);
+            listMethods.Add(11);
+            listMethods.Add(12);
+            listMethods.Add(13);
+            listMethods.Add(14);
+            listMethods.Add(15);
+            int expectedValue = 15;
+            //Act
+            listMethods.Remove(3);
+            listMethods.Remove(3);
+            int actualValue = listMethods[3];
+            //Assert
+            Assert.AreEqual(expectedValue, actualValue);
+        }
     }
 }
