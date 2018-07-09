@@ -199,7 +199,7 @@ namespace CustomListTest
             Assert.AreEqual(expectedValueFive, actualValue);
         }
         [TestMethod]
-        public void Remove_Element_RemoveASingleElementFromList()
+        public void RemoveAt_Element_RemoveASingleElementFromList()
         {
             CustomList.ListMethod<int> listMethods = new CustomList.ListMethod<int>();
             //Arrange
@@ -208,8 +208,27 @@ namespace CustomListTest
             listMethods.Add(12);
             int expectedValue = 12;
             //Act
-            listMethods.Remove(1);
+            listMethods.RemoveAt(1);
             int actualValue = listMethods[1];
+            //Assert
+            Assert.AreEqual(expectedValue, actualValue);
+        }
+        [TestMethod]
+        public void RemoveAt_Element_RemoveMultipleElementsFromList()
+        {
+            CustomList.ListMethod<int> listMethods = new CustomList.ListMethod<int>();
+            //Arrange
+            listMethods.Add(10);
+            listMethods.Add(11);
+            listMethods.Add(12);
+            listMethods.Add(13);
+            listMethods.Add(14);
+            listMethods.Add(15);
+            int expectedValue = 15;
+            //Act
+            listMethods.RemoveAt(3);
+            listMethods.RemoveAt(3);
+            int actualValue = listMethods[3];
             //Assert
             Assert.AreEqual(expectedValue, actualValue);
         }
@@ -222,12 +241,11 @@ namespace CustomListTest
             listMethods.Add(11);
             listMethods.Add(12);
             listMethods.Add(13);
-            listMethods.Add(14);
+            listMethods.Add(12);
             listMethods.Add(15);
-            int expectedValue = 15;
+            int expectedValue = 12;
             //Act
-            listMethods.Remove(3);
-            listMethods.Remove(3);
+            listMethods.Remove(12);
             int actualValue = listMethods[3];
             //Assert
             Assert.AreEqual(expectedValue, actualValue);
