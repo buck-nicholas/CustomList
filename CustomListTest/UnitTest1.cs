@@ -314,10 +314,73 @@ namespace CustomListTest
             int[] expectedValueTwo = { 10, 11, 12 };
             listMethodsOne.Add(expectedValueOne);
             listMethodsOne.Add(expectedValueTwo);
-            string expectedValue = "{10,11,12},{10,11,12}";
             //Act
             string actualValue = listMethodsOne.ToString();
             //Assert
+        }
+        [TestMethod]
+        public void Zip_List_ZipTwoLists()
+        {
+            CustomList.ListMethod<int> listMethodsOne = new CustomList.ListMethod<int>();
+            CustomList.ListMethod<int> listMethodsTwo = new CustomList.ListMethod<int>();
+            CustomList.ListMethod<int> listMethodsThree = new CustomList.ListMethod<int>();
+            //Arrange
+            listMethodsOne.Add(1);
+            listMethodsOne.Add(3);
+            listMethodsOne.Add(5);
+            listMethodsTwo.Add(2);
+            listMethodsTwo.Add(4);
+            listMethodsTwo.Add(6);
+            int expectedValue = 3;
+            //Act
+            listMethodsThree = listMethodsOne.Zip(listMethodsTwo);
+            int actualValue = listMethodsThree[2];
+            //Assert
+            Assert.AreEqual(expectedValue, actualValue);
+        }
+        [TestMethod]
+        public void Zip_List_ZipTwoListsOfDifferentLaggingSize()
+        {
+            CustomList.ListMethod<int> listMethodsOne = new CustomList.ListMethod<int>();
+            CustomList.ListMethod<int> listMethodsTwo = new CustomList.ListMethod<int>();
+            CustomList.ListMethod<int> listMethodsThree = new CustomList.ListMethod<int>();
+            //Arrange
+            listMethodsOne.Add(1);
+            listMethodsOne.Add(3);
+            listMethodsOne.Add(5);
+            listMethodsTwo.Add(2);
+            listMethodsTwo.Add(4);
+            listMethodsTwo.Add(6);
+            listMethodsTwo.Add(7);
+            listMethodsTwo.Add(8);
+            int expectedValue = 8;
+            //Act
+            listMethodsThree = listMethodsOne.Zip(listMethodsTwo);
+            int actualValue = listMethodsThree[7];
+            //Assert
+            Assert.AreEqual(expectedValue, actualValue);
+        }
+        [TestMethod]
+        public void Zip_List_ZipTwoListsOfDifferentLeadingSize()
+        {
+            CustomList.ListMethod<int> listMethodsOne = new CustomList.ListMethod<int>();
+            CustomList.ListMethod<int> listMethodsTwo = new CustomList.ListMethod<int>();
+            CustomList.ListMethod<int> listMethodsThree = new CustomList.ListMethod<int>();
+            //Arrange
+            listMethodsOne.Add(1);
+            listMethodsOne.Add(3);
+            listMethodsOne.Add(5);
+            listMethodsTwo.Add(2);
+            listMethodsTwo.Add(4);
+            listMethodsTwo.Add(6);
+            listMethodsOne.Add(7);
+            listMethodsOne.Add(8);
+            int expectedValue = 8;
+            //Act
+            listMethodsThree = listMethodsOne.Zip(listMethodsTwo);
+            int actualValue = listMethodsThree[7];
+            //Assert
+            Assert.AreEqual(expectedValue, actualValue);
         }
     }
 }

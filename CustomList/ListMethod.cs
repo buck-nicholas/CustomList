@@ -174,7 +174,24 @@ namespace CustomList
                 System.FormatException emptyArray = new System.FormatException("Cannot convert empty list to string");
                 throw emptyArray;
             }
-            
+        }
+        public ListMethod<T> Zip(ListMethod<T> listTwo)
+        {
+            ListMethod<T> newList = new ListMethod<T>();
+            int i = 0;
+            do
+            {
+                if (i < count)
+                {
+                    newList.Add(newArray[i]);
+                }
+                if (i < listTwo.Count)
+                {
+                    newList.Add(listTwo[i]);
+                }
+                i++;
+            } while (count > i || listTwo.Count > i);
+            return newList;
         }
     }
 }
