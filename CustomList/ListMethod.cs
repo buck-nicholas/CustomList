@@ -27,7 +27,6 @@ namespace CustomList
                 newArray[index] = value;
             }
         }
-        private int Capacity { get; }
         public int Count
         {
             get
