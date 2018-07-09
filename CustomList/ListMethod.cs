@@ -46,44 +46,59 @@ namespace CustomList
             count++;
             newArray = largerArray;
         }
-        public void RemoveAt(int index)
+        public bool RemoveAt(int index)
         {
+            bool removeAt = false;
             try
             {
-                T[] reducedArray = new T[capacity];
-                for (int i = 0; i < count; i++)
+                if (index >= 0 && index < count)
                 {
-                    if (i < index && )
+                    T[] reducedArray = new T[capacity];
+                    int reducedCount = 0;
+                    for (int i = 0; i < count; i++)
                     {
-                        reducedArray[i] = newArray[i];
+                        if (i < index)
+                        {
+                            reducedArray[i] = newArray[i];
+                            reducedCount++;
+                        }
+                        else if (i > index)
+                        {
+                            reducedArray[i - 1] = newArray[i];
+                            reducedCount++;
+                        }
                     }
-                    else if (i > index)
+                    if (count == reducedCount + 1)
                     {
-                        reducedArray[i - 1] = newArray[i];
+                        removeAt = true;
                     }
+                    newArray = reducedArray;
+                    count--;
                 }
-                newArray = reducedArray;
-                count--;
             }
             catch
             {
                 System.IndexOutOfRangeException indexOutOfRange = new System.IndexOutOfRangeException("Index cannot be out of range");
                 throw indexOutOfRange;
             }
+            return removeAt;
         }
-        public void Remove(T value)
+        public bool Remove(T value)
         {
             T[] reducedArray = new T[capacity];
+            int reducedCount = 0;
             bool isFound = false;
             for (int i = 0; i < count; i++)
             {
                 if (!value.Equals(newArray[i]) && !isFound)
                 {
                     reducedArray[i] = newArray[i];
+                    reducedCount++;
                 }
                 if ((!value.Equals(newArray[i]) && isFound) || (value.Equals(newArray[i]) && isFound))
                 {
                     reducedArray[i - 1] = newArray[i];
+                    reducedCount++;
                 }
                 if (value.Equals(newArray[i]) && !isFound)
                 {
@@ -92,6 +107,7 @@ namespace CustomList
                 }
             }
             newArray = reducedArray;
+            return isFound;
         }
         public IEnumerator<T> GetEnumerator()
         {
