@@ -8,13 +8,12 @@ namespace CustomList
     public class ListMethod<T> : IEnumerable<T>
     {
         public T[] newArray;
-        private int capacity;
         private int count;
         public ListMethod()
         {
-            capacity = 5;
+            //capacity = 5;
             count = 0;
-            newArray = new T[capacity];
+            newArray = new T[count];
         }
         public T this[int index] // Indexer
         {
@@ -36,7 +35,7 @@ namespace CustomList
         }
         public void Add(T item)
         {
-            T[] largerArray = new T[capacity + 1];
+            T[] largerArray = new T[count + 1];
             for(int i = 0; i < count; i++)
             {
                 largerArray[i] = newArray[i];
@@ -52,7 +51,7 @@ namespace CustomList
             {
                 if (index >= 0 && index < count)
                 {
-                    T[] reducedArray = new T[capacity];
+                    T[] reducedArray = new T[count];
                     int reducedCount = 0;
                     for (int i = 0; i < count; i++)
                     {
@@ -84,7 +83,7 @@ namespace CustomList
         }
         public bool Remove(T value)
         {
-            T[] reducedArray = new T[capacity];
+            T[] reducedArray = new T[count];
             int reducedCount = 0;
             bool isFound = false;
             for (int i = 0; i < count; i++)
@@ -131,6 +130,27 @@ namespace CustomList
                 combinedList.Add(list2[i]);
             }
             return combinedList;
+        }
+        public static ListMethod<T> operator- (ListMethod<T> list1, ListMethod<T> list2)
+        {
+            ListMethod<T> subtractedList = new ListMethod<T>();
+            bool isFound;
+            foreach(T item in list1)
+            {
+                isFound = false;
+                for(int i = 0; i < list2.Count; i++)
+                {
+                    if (item.Equals(list2[i]))
+                    {
+                        isFound = true;
+                    }
+                }
+                if (!isFound)
+                {
+                    subtractedList.Add(item);
+                }
+            }
+            return subtractedList;
         }
     }
 }

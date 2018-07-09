@@ -270,5 +270,25 @@ namespace CustomListTest
             //Assert
             Assert.AreEqual(expectedValue, ActualValue);
         }
+        [TestMethod]
+        public void Subtract_List_SubtractOneListFromAnother()
+        {
+            CustomList.ListMethod<int> listMethodsOne = new CustomList.ListMethod<int>();
+            CustomList.ListMethod<int> listMethodsTwo = new CustomList.ListMethod<int>();
+            CustomList.ListMethod<int> listMethodsThree = new CustomList.ListMethod<int>();
+            //Arrange
+            listMethodsOne.Add(10);
+            listMethodsOne.Add(11);
+            listMethodsOne.Add(12);
+            listMethodsTwo.Add(8);
+            listMethodsTwo.Add(9);
+            listMethodsTwo.Add(10);
+            int expectedValue = 11;
+            //Act
+            listMethodsThree = listMethodsOne - listMethodsTwo;
+            int ActualValue = listMethodsThree[0];
+            //Assert
+            Assert.AreEqual(expectedValue, ActualValue);
+        }
     }
 }
