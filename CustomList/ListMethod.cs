@@ -109,7 +109,7 @@ namespace CustomList
         }
         public IEnumerator<T> GetEnumerator()
         {
-            for(int index = 0; index < newArray.Length; index++)
+            for(int index = 0; index < Count; index++)
             {
                 yield return newArray[index];
             }
@@ -154,13 +154,20 @@ namespace CustomList
         }
         public override string ToString()
         {
-            string newString = "";
-            foreach (T item in newArray)
+            //string newString = "";
+            //foreach (T item in newArray)
+            //{
+            //    string str = newString + "," + item;
+            //    newString = str;
+            //}
+            //newString = newString.Remove(0, 1);
+            //return newString;
+            StringBuilder BobTheBuilder = new StringBuilder();
+            foreach(T item in newArray)
             {
-                string str = newString + "," + item;
-                newString = str;
+                BobTheBuilder.Append(item).Append(",");
             }
-            newString = newString.Remove(0, 1);
+            string newString = BobTheBuilder.ToString().Remove(BobTheBuilder.Length - 1, 1);
             return newString;
         }
     }
