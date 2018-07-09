@@ -290,5 +290,19 @@ namespace CustomListTest
             //Assert
             Assert.AreEqual(expectedValue, ActualValue);
         }
+        [TestMethod]
+        public void ToString_List_ConvertListToString()
+        {
+            CustomList.ListMethod<int> listMethodsOne = new CustomList.ListMethod<int>();
+            //Arrange
+            listMethodsOne.Add(10);
+            listMethodsOne.Add(11);
+            listMethodsOne.Add(12);
+            string expectedValue = "10,11,12";
+            //Act
+            string actualValue = listMethodsOne.ToString();
+            //Assert
+            Assert.AreEqual(expectedValue, actualValue);
+        }
     }
 }

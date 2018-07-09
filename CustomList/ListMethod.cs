@@ -152,5 +152,16 @@ namespace CustomList
             }
             return subtractedList;
         }
+        public override string ToString()
+        {
+            string newString = "";
+            foreach (T item in newArray)
+            {
+                string str = newString + "," + item;
+                newString = str;
+            }
+            newString = newString.Remove(0, 1);
+            return newString;
+        }
     }
 }
