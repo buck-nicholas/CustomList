@@ -250,5 +250,25 @@ namespace CustomListTest
             //Assert
             Assert.AreEqual(expectedValue, actualValue);
         }
+        [TestMethod]
+        public void Add_List_AddTwoListsTogether()
+        {
+            CustomList.ListMethod<int> listMethodsOne = new CustomList.ListMethod<int>();
+            CustomList.ListMethod<int> listMethodsTwo = new CustomList.ListMethod<int>();
+            CustomList.ListMethod<int> listMethodsThree = new CustomList.ListMethod<int>();
+            //Arrange
+            listMethodsOne.Add(10);
+            listMethodsOne.Add(11);
+            listMethodsOne.Add(12);
+            listMethodsTwo.Add(13);
+            listMethodsTwo.Add(12);
+            listMethodsTwo.Add(15);
+            int expectedValue = 15;
+            //Act
+            listMethodsThree = listMethodsOne + listMethodsTwo;
+            int ActualValue = listMethodsThree[5];
+            //Assert
+            Assert.AreEqual(expectedValue, ActualValue);
+        }
     }
 }
