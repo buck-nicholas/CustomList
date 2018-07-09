@@ -154,21 +154,27 @@ namespace CustomList
         }
         public override string ToString()
         {
-            //string newString = "";
-            //foreach (T item in newArray)
-            //{
-            //    string str = newString + "," + item;
-            //    newString = str;
-            //}
-            //newString = newString.Remove(0, 1);
-            //return newString;
-            StringBuilder BobTheBuilder = new StringBuilder();
-            foreach(T item in newArray)
+            if (newArray[0].GetType().IsArray)
             {
-                BobTheBuilder.Append(item).Append(",");
+                System.FormatException listTypeIsArray = new System.FormatException("Cannot implicitly convert array to string");
+                throw listTypeIsArray;
             }
-            string newString = BobTheBuilder.ToString().Remove(BobTheBuilder.Length - 1, 1);
-            return newString;
+            try
+            {
+                StringBuilder BobTheBuilder = new StringBuilder();
+                foreach (T item in newArray)
+                {
+                    BobTheBuilder.Append(item).Append(",");
+                }
+                string newString = BobTheBuilder.ToString().Remove(BobTheBuilder.Length - 1, 1);
+                return newString;
+            }
+            catch
+            {
+                System.FormatException emptyArray = new System.FormatException("Cannot convert empty list to string");
+                throw emptyArray;
+            }
+            
         }
     }
 }

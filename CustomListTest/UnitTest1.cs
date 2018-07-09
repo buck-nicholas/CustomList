@@ -304,5 +304,20 @@ namespace CustomListTest
             //Assert
             Assert.AreEqual(expectedValue, actualValue);
         }
+        [TestMethod]
+        [ExpectedException(typeof(FormatException))]
+        public void ToString_ListOfArrays_ConvertListOfArraysToString()
+        {
+            CustomList.ListMethod<int[]> listMethodsOne = new CustomList.ListMethod<int[]>();
+            //Arrange
+            int[] expectedValueOne = { 10, 11, 12 };
+            int[] expectedValueTwo = { 10, 11, 12 };
+            listMethodsOne.Add(expectedValueOne);
+            listMethodsOne.Add(expectedValueTwo);
+            string expectedValue = "{10,11,12},{10,11,12}";
+            //Act
+            string actualValue = listMethodsOne.ToString();
+            //Assert
+        }
     }
 }
