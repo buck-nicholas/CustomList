@@ -167,6 +167,7 @@ namespace CustomList
         }
         public override string ToString()
         {
+            int unusedSpace = capacity - count;
             if (newArray[0].GetType().IsArray)
             {
                 System.FormatException listTypeIsArray = new System.FormatException("Cannot implicitly convert array to string");
@@ -175,9 +176,9 @@ namespace CustomList
             try
             {
                 StringBuilder BobTheBuilder = new StringBuilder();
-                foreach (T item in newArray)
+                for(int i = 0; i < count; i ++)
                 {
-                    BobTheBuilder.Append(item).Append(",");
+                    BobTheBuilder.Append(newArray[i]).Append(",");
                 }
                 string newString = BobTheBuilder.ToString().Remove(BobTheBuilder.Length - 1, 1);
                 return newString;
