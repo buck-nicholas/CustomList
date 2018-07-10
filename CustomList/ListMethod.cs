@@ -9,11 +9,12 @@ namespace CustomList
     {
         public T[] newArray;
         private int count;
+        private int capacity;
         public ListMethod()
         {
-            //capacity = 5;
+            capacity = 5;
             count = 0;
-            newArray = new T[count];
+            newArray = new T[capacity];
         }
         public T this[int index] // Indexer
         {
@@ -33,16 +34,28 @@ namespace CustomList
                 return count;
             }
         }
+        public int Capacity
+        {
+            get
+            {
+                return capacity;
+            }
+        }
         public void Add(T item)
         {
-            T[] largerArray = new T[count + 1];
-            for(int i = 0; i < count; i++)
+            if (count + 1 > Math.Round(capacity * .8))
             {
-                largerArray[i] = newArray[i];
+                int capacityIncrement = Convert.ToInt32(Math.Round(capacity * .8));
+                capacity += capacityIncrement;
+                T[] largerArray = new T[capacity];
+                for (int i = 0; i < count; i++)
+                {
+                    largerArray[i] = newArray[i];
+                }
+                newArray = largerArray;
             }
-            largerArray[count] = item;
+            newArray[count] = item;
             count++;
-            newArray = largerArray;
         }
         public bool RemoveAt(int index)
         {
